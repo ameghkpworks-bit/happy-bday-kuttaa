@@ -74,7 +74,11 @@
 </style>
 </head>
 <body>
-
+<!-- 🟢 ADDED: Background music -->
+<audio id="bgMusic" loop preload="auto">
+  <source src="littlethings.mp3" type="audio/mpeg">
+</audio>
+<!-- 🟢 END ADDED -->
 <canvas id="scene"></canvas>
 <div id="fade"></div>
 
@@ -1094,6 +1098,15 @@ function pointerPos(e){
   return { x: p.clientX-r.left, y: p.clientY-r.top };
 }
 canvas.addEventListener('pointerdown', e=>{
+
+  // 🟢 ADDED: Start background music
+  const music = document.getElementById('bgMusic');
+
+  if (music && music.paused) {
+    music.play().catch(() => {});
+  }
+  // 🟢 END ADDED
+
   if(stage!=='bow') return;
   dragging = true;
   canvas.classList.add('dragging');
